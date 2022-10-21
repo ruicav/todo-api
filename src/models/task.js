@@ -10,6 +10,7 @@ const task = (sequelize, DataTypes) => {
     },
     description: { type: DataTypes.STRING, allowNull: false },
     status: { type: DataTypes.ENUM, values: TASK_STATUS },
+    doneAt: { type: DataTypes.DATE },
   });
 
   Task.associate = (models) => {

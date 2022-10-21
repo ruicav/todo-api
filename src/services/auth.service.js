@@ -28,13 +28,15 @@ function verifyToken(req, res, next) {
         if (err) throw new Error("Invalid token");
         authenticated = decoded?.user;
       });
-      req.user = authenticated;
+      delete req.body.userId;
+      req.body.userId = authenticated?.id;
       next();
     } catch (err) {
-      throw new Error("Invalid token");
+      res.sendStatus(403);
     }
+  } else {
+    res.sendStatus(403);
   }
-  res.sendStatus(403);
 }
 
 module.exports = {

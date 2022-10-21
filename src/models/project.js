@@ -17,6 +17,13 @@ const project = (sequelize, DataTypes) => {
         as: "user",
       },
     });
+    Project.hasMany(models.Task, {
+      foreignKey: {
+        name: "projectId",
+        allowNull: false,
+      },
+      as: "tasks",
+    });
   };
   return Project;
 };
